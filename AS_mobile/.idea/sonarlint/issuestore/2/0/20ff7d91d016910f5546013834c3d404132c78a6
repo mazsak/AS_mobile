@@ -1,23 +1,0 @@
-
-=squid:S1643"Use a StringBuilder instead.(וû†רûÿÿÿÿ8הנוÚ†-
-wsquid:S2068"V'password' detected in this expression, review this potentially hard-coded credential.(לוֶך‏ÿÿÿÿ8הנוÚ†-
-isquid:S1871"MThis branch's code block is the same as the block for the branch on line 115.(ז־א 8הנוÚ†-
-isquid:S1871"MThis branch's code block is the same as the block for the branch on line 115.(ף´®8הנוÚ†-
-isquid:S1871"MThis branch's code block is the same as the block for the branch on line 115.(ץÿ8הנוÚ†-
-nsquid:S1871"MThis branch's code block is the same as the block for the branch on line 115.(ױף³קתÿÿÿÿ8הנוÚ†-
-nsquid:S1871"MThis branch's code block is the same as the block for the branch on line 115.(ך±›ׁüÿÿÿÿ8הנוÚ†-
-Ksquid:S1905"*Remove this unnecessary cast to "Toolbar".(×ü–‎ÿÿÿÿ8הנוÚ†-
-Rsquid:S1905"7Remove this unnecessary cast to "FloatingActionButton".(–“€G8הנוÚ†-
-Psquid:S1905"/Remove this unnecessary cast to "DrawerLayout".(׀ֽט¨‏ÿÿÿÿ8הנוÚ†-
-Rsquid:S1905"1Remove this unnecessary cast to "NavigationView".(üûֽרÿÿÿÿ8הנוÚ†-
-Psquid:S1905"/Remove this unnecessary cast to "DrawerLayout".(׀ֽט¨‏ÿÿÿÿ8הנוÚ†-
-Psquid:S1905"/Remove this unnecessary cast to "DrawerLayout".(׀ֽט¨‏ÿÿÿÿ8הנוÚ†-
-Fsquid:S00108")Either remove or fill this block of code.(ז־א 8הנוÚ†-
-Fsquid:S00108")Either remove or fill this block of code.(ף´®8הנוÚ†-
-Fsquid:S00108")Either remove or fill this block of code.(ץÿ8הנוÚ†-
-Ksquid:S00108")Either remove or fill this block of code.(ױף³קתÿÿÿÿ8הנוÚ†-
-Ksquid:S00108")Either remove or fill this block of code.(ך±›ׁüÿÿÿÿ8הנוÚ†-
-[squid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(Ûןֶ8הנוÚ†-
-_squid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ןֽתÿÿÿÿ8הנוÚ†-
-ksquid:UselessImportCheck"CRemove this unused import 'android.support.design.widget.Snackbar'.( ְ®p8הנוÚ†-
-Dsquid:S1148"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8הנוÚ†-
