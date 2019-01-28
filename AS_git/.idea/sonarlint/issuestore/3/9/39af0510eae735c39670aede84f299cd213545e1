@@ -1,23 +1,0 @@
-
-Zsquid:UselessImportCheck"8Remove this unused import 'android.provider.MediaStore'.(ãçšş
-lsquid:UselessImportCheck"JRemove this unused import 'com.google.android.gms.vision.barcode.Barcode'.(÷“†Æ
-Rsquid:S1905"1Remove this unnecessary cast to "NavigationView".(üûÍøÿÿÿÿ8„Ú‘ª‰-
-Wsquid:UselessImportCheck"5Remove this unused import 'android.util.SparseArray'.(ü§¯¾
-Xsquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ
-Tsquid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G
-tsquid:UselessImportCheck"RRemove this unused import 'com.google.android.gms.vision.barcode.BarcodeDetector'.(¥šº¬
-asquid:UselessImportCheck"@Remove this unused import 'com.google.android.gms.vision.Frame'.(şó²3
-Usquid:UselessImportCheck"4Remove this unused import 'android.graphics.Bitmap'.(¾ì
-[squid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ
-Psquid:S1905"/Remove this unnecessary cast to "DrawerLayout".(ĞÍè¨şÿÿÿÿ8„Ú‘ª‰-
-Z"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8„Ú‘ª‰-
-Ksquid:S1905"*Remove this unnecessary cast to "Toolbar".(ªü–ıÿÿÿÿ8„Ú‘ª‰-
-Psquid:S1905"/Remove this unnecessary cast to "DrawerLayout".(ĞÍè¨şÿÿÿÿ8„Ú‘ª‰-
-dsquid:UselessImportCheck"CRemove this unused import 'android.support.design.widget.Snackbar'.( À®p
-Fsquid:S1068",Remove this unused "listHome" private field.(–¶¢Æûÿÿÿÿ
-;squid:S1068"&Remove this unused "db" private field.(úåÔÌ
-T"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ìúÇV8„Ú‘ª‰-
-Tsquid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ
-Psquid:S1905"/Remove this unnecessary cast to "DrawerLayout".(ĞÍè¨şÿÿÿÿ8„Ú‘ª‰-
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(…Çá®ÿÿÿÿÿ8‰Ç’ª‰-

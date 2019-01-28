@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.models.Cattle;
+import com.example.mateusz.as.show.ListCattleFragment;
+import com.example.mateusz.as.show.ListFragment;
+import com.example.mateusz.as.show.ListSearchFragment;
 import com.example.mateusz.as.viewHolder.CattleViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,9 +27,11 @@ public class AdapterSearchCattle extends RecyclerView.Adapter<CattleViewHolder> 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<Cattle> cattles = new ArrayList<>();
     private List<Integer> idCattle = new ArrayList<>();
+    private ListSearchFragment cattleHome;
 
-    public AdapterSearchCattle(List<Integer> idCattle) {
+    public AdapterSearchCattle(List<Integer> idCattle, ListSearchFragment cattleHome) {
         this.idCattle = idCattle;
+        this.cattleHome = cattleHome;
         loadCattle();
     }
 
@@ -35,7 +40,7 @@ public class AdapterSearchCattle extends RecyclerView.Adapter<CattleViewHolder> 
     public CattleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_cattle, null);
 
-        return new CattleViewHolder(view);
+        return new CattleViewHolder(view, cattleHome);
     }
 
     @Override
@@ -61,7 +66,7 @@ public class AdapterSearchCattle extends RecyclerView.Adapter<CattleViewHolder> 
                             helpCattles.addAll(task.getResult().toObjects(Cattle.class));
                             for (Cattle cattle : helpCattles) {
                                 for (Integer id : idCattle) {
-                                    if (id.equals(cattle.getIdCattle())) {
+                                    if (id == cattle.getIdCattle()) {
                                         cattles.add(cattle);
                                     }
                                 }

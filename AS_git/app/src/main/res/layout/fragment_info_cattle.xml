@@ -3,134 +3,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        tools:context=".show.CattleInfoFragment">
+    tools:context=".show.CattleInfoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/name_cattle"
+        <TextView
+            android:id="@+id/earring_cattle_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin16"
             android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/name" />
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/size_text_big" />
 
-        <EditText
-            android:id="@+id/earring_cattle"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin16"
             android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/earring" />
+            android:text="@string/name"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/name_cattle_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin16"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/size_text_normal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin24">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/margin16"
-                android:layout_marginTop="@dimen/margin32"
-                android:text="@string/sex"
-                android:textSize="@dimen/size_text_normal" />
+                android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/sex_cattle"
-                android:layout_width="fill_parent"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin24"
+                    android:layout_marginEnd="@dimen/margin32"
+                    android:text="@string/cowshed_number"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/number_cowshed_cattle_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin32"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin24"
+                    android:layout_marginEnd="@dimen/margin32"
+                    android:text="@string/birthDate"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/birth_date_cattle_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin32"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin24"
+                    android:layout_marginEnd="@dimen/margin32"
+                    android:text="@string/leaveDate"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/leave_date_cattle_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin32"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_text_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/margin32"
-                android:layout_marginTop="@dimen/margin32"
-                android:layout_marginEnd="@dimen/margin32"
-                android:prompt="@array/type_sex" />
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/margin24">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin32"
+                    android:layout_marginTop="@dimen/margin24"
+                    android:text="@string/sex"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/sex_cattle_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin32"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin32"
+                    android:layout_marginTop="@dimen/margin24"
+                    android:text="@string/joinDate"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/join_date_cattle_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin32"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_text_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin32"
+                    android:layout_marginTop="@dimen/margin24"
+                    android:text="@string/leaveReason"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/leave_reason_cattle_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin32"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_text_normal" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/cowshed_number_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:inputType="number"
-            android:hint="@string/cowshed_number" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin16"
-            android:layout_marginTop="@dimen/margin32"
-            android:text="@string/birthDate"
-            android:textSize="@dimen/size_text_normal" />
-
-        <EditText
-            android:id="@+id/birth_date_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/date" />
+            android:text="@string/note"
+            android:textColor="@android:color/black" />
 
         <TextView
+            android:id="@+id/note_cattle_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin16"
-            android:layout_marginTop="@dimen/margin32"
-            android:text="@string/joinDate"
-            android:textSize="@dimen/size_text_normal" />
-
-        <EditText
-            android:id="@+id/join_date_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/date" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin16"
-            android:layout_marginTop="@dimen/margin32"
-            android:text="@string/leaveDate"
-            android:textSize="@dimen/size_text_normal" />
-
-        <EditText
-            android:id="@+id/leave_date_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/date" />
-
-        <EditText
-            android:id="@+id/leave_reason_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/leaveReason"
-            android:singleLine="false" />
-
-        <EditText
-            android:id="@+id/note_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin24"
-            android:gravity="center"
-            android:hint="@string/note"
-            android:singleLine="false" />
-
-        <Button
-            android:id="@+id/save_cattle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin32"
-            android:text="@string/save"
+            android:layout_marginEnd="@dimen/margin16"
+            android:inputType="textMultiLine"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/size_text_normal" />
 
     </LinearLayout>

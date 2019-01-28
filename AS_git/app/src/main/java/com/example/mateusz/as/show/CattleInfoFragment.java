@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mateusz.as.R;
@@ -29,149 +30,70 @@ import java.util.List;
 
 public class CattleInfoFragment extends Fragment {
 
+    public static final String CATTLE_EARRNIG = "EARRNIG_CATTLE_SHOW";
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private EditText name, earring, cowshedNumber, birthDate, joinDate, leaveDate, leaveReason, note;
-    private Spinner sex;
-    private Button save;
-    private Team chosenTeam;
-    private int idTeam;
+    private TextView name, earring, cowshedNumber, birthDate, joinDate, leaveDate, leaveReason, note, sex;
+    private String earringCattle;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        idTeam = getArguments().getInt(TeamViewHolder.GROUP_ID);
-        getTeam();
+        earringCattle = getArguments().getString(CATTLE_EARRNIG);
+        getCattle();
     }
 
     public void init(View view) {
-        name = view.findViewById(R.id.name_cattle);
-        earring = view.findViewById(R.id.earring_cattle);
-        cowshedNumber = view.findViewById(R.id.cowshed_number_cattle);
-        birthDate = view.findViewById(R.id.birth_date_cattle);
-        joinDate = view.findViewById(R.id.join_date_cattle);
-        leaveDate = view.findViewById(R.id.leave_date_cattle);
-        leaveReason = view.findViewById(R.id.leave_reason_cattle);
-        note = view.findViewById(R.id.note_cattle);
-
-        sex = view.findViewById(R.id.sex_cattle);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.type_sex, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sex.setAdapter(adapter);
-
-        save = view.findViewById(R.id.save_cattle);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addCattle();
-            }
-        });
+        name = view.findViewById(R.id.name_cattle_info);
+        earring = view.findViewById(R.id.earring_cattle_info);
+        cowshedNumber = view.findViewById(R.id.number_cowshed_cattle_info);
+        birthDate = view.findViewById(R.id.birth_date_cattle_info);
+        joinDate = view.findViewById(R.id.join_date_cattle_info);
+        leaveDate = view.findViewById(R.id.leave_date_cattle_info);
+        leaveReason = view.findViewById(R.id.leave_reason_cattle_info);
+        note = view.findViewById(R.id.note_cattle_info);
+        sex = view.findViewById(R.id.sex_cattle_info);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_save_cattle, container, false);
+        View view = inflater.inflate(R.layout.fragment_info_cattle, container, false);
 
         init(view);
 
         return view;
     }
 
-
-    public void addCattle() {
-        if (!earring.getText().toString().isEmpty() && !birthDate.getText().toString().isEmpty() && !joinDate.getText().toString().isEmpty() && !sex.isSelected()) {
-            final Cattle cattle = new Cattle();
-            if(name.getText().toString().isEmpty()){
-                cattle.setName(null);
-            }else {
-                cattle.setName(name.getText().toString());
-            }
-            cattle.setEarring(earring.getText().toString());
-            cattle.setSex(sex.getSelectedItem().toString());
-            if(cowshedNumber.getText().toString().isEmpty()){
-                cattle.setCowshedNumber(null);
-            }else {
-                cattle.setCowshedNumber(Integer.valueOf(cowshedNumber.getText().toString()));
-            }
-            try {
-                cattle.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(birthDate.getText().toString()));
-                cattle.setJoinDate(new SimpleDateFormat("dd.MM.yyyy").parse(joinDate.getText().toString()));
-                if(leaveDate.getText().toString().isEmpty()){
-                    cattle.setLeaveDate(null);
-                }else {
-                    cattle.setLeaveDate(new SimpleDateFormat("dd.MM.yyyy").parse(leaveDate.getText().toString()));
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            if(leaveReason.getText().toString().isEmpty()){
-                cattle.setLeaveReason(null);
-            }else {
-                cattle.setLeaveReason(leaveReason.getText().toString());
-            }
-            if(note.getText().toString().isEmpty()){
-                cattle.setNotes(null);
-            }else {
-                cattle.setNotes(note.getText().toString());
-            }
-            cattle.getTeamList().add(idTeam);
-
-
-            db.collection("Cattle")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                List<Cattle> cattles = new ArrayList<>();
-                                cattles.addAll(task.getResult().toObjects(Cattle.class));
-                                if (cattles.size() == 0) {
-                                    cattle.setIdCattle(0);
-                                } else {
-                                    cattle.setIdCattle(cattles.get(cattles.size() - 1).getIdCattle() + 1);
-                                }
-
-                                db.collection("Cattle")
-                                        .document(String.valueOf(cattle.getIdCattle()))
-                                        .set(cattle);
-
-                                if (chosenTeam.getCattleList().isEmpty()) {
-                                    List<Integer> list = new ArrayList<>();
-                                    list.add((int) cattle.getIdCattle());
-                                    chosenTeam.setCattleList(list);
-                                } else {
-                                    chosenTeam.getCattleList().add((int) cattle.getIdCattle());
-                                }
-
-                                db.collection("Team")
-                                        .document(String.valueOf(chosenTeam.getIdGroup()))
-                                        .set(chosenTeam);
-                            } else {
-                                Log.w("QueryCattle.read: ", "Error getting documents.", task.getException());
-                            }
-                        }
-                    });
-        } else {
-            Toast.makeText(getContext(), getString(R.string.info_add), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void getTeam() {
-        db.collection("Team")
+    public void getCattle() {
+        db.collection("Cattle")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<Team> teams = new ArrayList<>();
-                            teams.addAll(task.getResult().toObjects(Team.class));
-                            for(Team team : teams) {
-                                if(team.getIdGroup() == idTeam) {
-                                    chosenTeam = team;
+                            List<Cattle> cattles = new ArrayList<>();
+                            cattles.addAll(task.getResult().toObjects(Cattle.class));
+                            for (Cattle cattle : cattles) {
+                                if (cattle.getEarring().equals(earringCattle)) {
+                                    if (cattle.getName() != null)
+                                        name.setText(cattle.getName());
+                                    earring.setText(cattle.getEarring());
+                                    if (cattle.getCowshedNumber() != null)
+                                        cowshedNumber.setText(cattle.getCowshedNumber().toString());
+                                    birthDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(cattle.getBirthDate()));
+                                    joinDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(cattle.getJoinDate()));
+                                    if (cattle.getLeaveDate() != null)
+                                        leaveDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(cattle.getLeaveDate()));
+                                    if (cattle.getLeaveReason() != null)
+                                        leaveReason.setText(cattle.getLeaveReason());
+                                    if (cattle.getNotes() != null)
+                                        note.setText(cattle.getNotes());
+                                    sex.setText(cattle.getSex());
                                 }
                             }
                         } else {
-                            Log.w("QueryTeam.read: ", "Error getting documents.", task.getException());
+                            Log.w("CattleInfo.getCattle: ", "Error getting documents.", task.getException());
                         }
                     }
                 });

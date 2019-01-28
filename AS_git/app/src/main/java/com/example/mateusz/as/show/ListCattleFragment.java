@@ -43,7 +43,7 @@ public class ListCattleFragment extends Fragment {
         listCattleHome = view.findViewById(R.id.list_cattle);
         listCattleHome.setHasFixedSize(true);
         listCattleHome.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        adapterCattle = new AdapterCattle(idTeam);
+        adapterCattle = new AdapterCattle(idTeam, this);
         listCattleHome.setAdapter(adapterCattle);
         addCattle.setOnClickListener(new View.OnClickListener() {
             @Override

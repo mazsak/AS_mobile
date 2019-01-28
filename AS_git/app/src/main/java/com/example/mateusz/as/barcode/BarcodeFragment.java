@@ -28,6 +28,8 @@ import com.example.mateusz.as.R;
 import com.example.mateusz.as.adapters.AdapterCattle;
 import com.example.mateusz.as.models.Cattle;
 import com.example.mateusz.as.saveModelFragments.CattleFragment;
+import com.example.mateusz.as.show.CattleInfoFragment;
+import com.example.mateusz.as.show.ListSearchFragment;
 import com.example.mateusz.as.viewHolder.TeamViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -57,6 +59,7 @@ public class BarcodeFragment extends Fragment {
     private Button show;
     private ArrayList<Integer> idCattle = new ArrayList<>();
     private String number = "";
+    private String earring;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -144,6 +147,7 @@ public class BarcodeFragment extends Fragment {
                                             for (Cattle cattle : cattles) {
                                                 if (cattle.getEarring().contains(number)) {
                                                     idCattle.add((int) cattle.getIdCattle());
+                                                    earring = cattle.getEarring();
                                                 }
                                             }
 
@@ -163,14 +167,20 @@ public class BarcodeFragment extends Fragment {
 
     public void showCattle(){
         if (idCattle.size() == 1) {
-
+            CattleInfoFragment cattleInfoFragment = new CattleInfoFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(CattleInfoFragment.CATTLE_EARRNIG, earring);
+            cattleInfoFragment.setArguments(bundle);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.container_fragment, cattleInfoFragment);
+            ft.commit();
         } else if (idCattle.size() > 1) {
-            ListFragment listFragment = new ListFragment();
+            ListSearchFragment listSearchFragment = new ListSearchFragment();
             Bundle bundle = new Bundle();
             bundle.putIntegerArrayList(ID_CATTLES, idCattle);
-            listFragment.setArguments(bundle);
+            listSearchFragment.setArguments(bundle);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.container_fragment, listFragment);
+            ft.replace(R.id.container_fragment, listSearchFragment);
             ft.commit();
         }
     }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.models.Cattle;
 import com.example.mateusz.as.models.Cowshed;
+import com.example.mateusz.as.show.ListCattleFragment;
 import com.example.mateusz.as.show.ListFragment;
 import com.example.mateusz.as.viewHolder.CattleViewHolder;
 import com.example.mateusz.as.viewHolder.CowshedViewHolder;
@@ -28,9 +29,11 @@ public class AdapterCattle extends RecyclerView.Adapter<CattleViewHolder> {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<Cattle> cattles = new ArrayList<>();
     private int idTeam;
+    private ListCattleFragment cattleHome;
 
-    public AdapterCattle(int idTeam) {
+    public AdapterCattle(int idTeam, ListCattleFragment cattleHome) {
         this.idTeam = idTeam;
+        this.cattleHome = cattleHome;
         loadCattle();
     }
 
@@ -38,8 +41,7 @@ public class AdapterCattle extends RecyclerView.Adapter<CattleViewHolder> {
     @Override
     public CattleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_cattle, null);
-
-        return new CattleViewHolder(view);
+        return new CattleViewHolder(view, cattleHome);
     }
 
     @Override
