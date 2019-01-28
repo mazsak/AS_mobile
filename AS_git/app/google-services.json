@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "748031275117",
+    "firebase_url": "https://asystent-stada.firebaseio.com",
+    "project_id": "asystent-stada",
+    "storage_bucket": "asystent-stada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748031275117:android:777757a11b8cf438",
+        "android_client_info": {
+          "package_name": "com.example.mateusz.as"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748031275117-582cnhsd8vm1omk9u3kel0ht80q4dsud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mateusz.as",
+            "certificate_hash": "17fe258a907f26774438173f2d39963d00cfee12"
+          }
+        },
+        {
+          "client_id": "748031275117-7amunqi7ft5vgig3nqnb6pocljm0np5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDje1Yi88nQtXPBlk1ilfCINv48rTHYsPA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748031275117-7amunqi7ft5vgig3nqnb6pocljm0np5e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
