@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin16"
             android:gravity="center"
-            android:hint="@string/name" />
+            android:hint="@string/address" />
 
         <EditText
             android:id="@+id/note_cowshed"

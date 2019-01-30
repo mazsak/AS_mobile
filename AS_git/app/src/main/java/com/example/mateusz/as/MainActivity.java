@@ -8,18 +8,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mateusz.as.barcode.BarcodeFragment;
+import com.example.mateusz.as.map.MapFragment;
 import com.example.mateusz.as.saveModelFragments.CowshedFragment;
 import com.example.mateusz.as.saveModelFragments.TeamFragment;
 import com.example.mateusz.as.show.ListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String OPEN_WEATHER_MAP_API = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_add_group:
                 chosenFragment(3);
                 break;
+            case R.id.nav_map:
+                chosenFragment(4);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -90,6 +95,7 @@ public class MainActivity extends AppCompatActivity
     public void loadingFragment(Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container_fragment, fragment);
+        ft.addToBackStack("tag");
         ft.commit();
     }
 
@@ -106,6 +112,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 3:
                 loadingFragment(new TeamFragment());
+                break;
+            case 4:
+                loadingFragment(new MapFragment());
                 break;
         }
     }

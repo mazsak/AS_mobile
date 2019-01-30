@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mateusz.as.show.ListFragment;
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.models.Team;
+import com.example.mateusz.as.show.ListFragment;
 import com.example.mateusz.as.viewHolder.TeamViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +28,10 @@ public class AdapterTeam extends RecyclerView.Adapter<TeamViewHolder> {
     public AdapterTeam(int idCowshed, ListFragment home){
         this.home = home;
         loadTeam(idCowshed);
+    }
+
+    public List<Team> getTeams() {
+        return teams;
     }
 
     @NonNull

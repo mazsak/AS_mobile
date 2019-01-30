@@ -21,6 +21,10 @@
     <string name="number_of_group">Number of groups: </string>
     <string name="number_of_cattle">Number of cattle: </string>
     <string name="info_add">Please fill all data</string>
+    <string name="delete_team">Delete group</string>
+    <string name="delete_cowshed">Delete cowshed</string>
+    <string name="info_delete">Please delete all cattles</string>
+    <string name="info_delete_cowshed">Please delete all groups</string>
     <string name="add_cattle">Add cattle</string>
     <string name="earring">Earring</string>
     <string name="sex">Sex</string>
@@ -33,6 +37,11 @@
     <string name="scan_barcode">Scan barcode</string>
     <string name="focus_QR">Please focus camera to QR Code</string>
     <string name="show_request">Show request</string>
+    <string name="map">Map</string>
+    <string name="show_map">Show cowshed in map</string>
+    <string name="my_location">My location</string>
+    <string name="address">Village, House number, Postcode</string>
+    <string name="update">Update</string>
 
     <array name="type_group">
         <item>Eat</item>

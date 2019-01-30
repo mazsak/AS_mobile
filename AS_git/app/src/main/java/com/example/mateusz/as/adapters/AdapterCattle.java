@@ -1,7 +1,8 @@
 package com.example.mateusz.as.adapters;
 
-import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,11 +11,8 @@ import android.view.ViewGroup;
 
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.models.Cattle;
-import com.example.mateusz.as.models.Cowshed;
 import com.example.mateusz.as.show.ListCattleFragment;
-import com.example.mateusz.as.show.ListFragment;
 import com.example.mateusz.as.viewHolder.CattleViewHolder;
-import com.example.mateusz.as.viewHolder.CowshedViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,6 +24,8 @@ import java.util.List;
 
 public class AdapterCattle extends RecyclerView.Adapter<CattleViewHolder> {
 
+    public static final String CATTLE_ID = "ID_CATTLE";
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private List<Cattle> cattles = new ArrayList<>();
     private int idTeam;
@@ -35,6 +35,10 @@ public class AdapterCattle extends RecyclerView.Adapter<CattleViewHolder> {
         this.idTeam = idTeam;
         this.cattleHome = cattleHome;
         loadCattle();
+    }
+
+    public List<Cattle> getCattles() {
+        return cattles;
     }
 
     @NonNull
@@ -60,16 +64,16 @@ public class AdapterCattle extends RecyclerView.Adapter<CattleViewHolder> {
         db.collection("Cattle")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             List<Cattle> helpCattles = new ArrayList<>();
                             helpCattles.addAll(task.getResult().toObjects(Cattle.class));
                             for (Cattle cattle : helpCattles) {
-                                for (Integer id : cattle.getTeamList()) {
-                                    if (id.equals(idTeam)) {
-                                        cattles.add(cattle);
-                                    }
+                                Integer id = Math.toIntExact(cattle.getTeam());
+                                if (id.equals(idTeam)) {
+                                    cattles.add(cattle);
                                 }
                             }
                             notifyDataSetChanged();

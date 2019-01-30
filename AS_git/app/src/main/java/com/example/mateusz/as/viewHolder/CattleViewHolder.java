@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.saveModelFragments.CattleFragment;
 import com.example.mateusz.as.show.CattleInfoFragment;
-import com.example.mateusz.as.show.ListCattleFragment;
-import com.example.mateusz.as.show.ListFragment;
 
 public class CattleViewHolder extends RecyclerView.ViewHolder {
 
@@ -33,9 +31,25 @@ public class CattleViewHolder extends RecyclerView.ViewHolder {
                 cattleFragment.setArguments(bundle);
                 FragmentTransaction ft = cattleHome.getFragmentManager().beginTransaction();
                 ft.replace(R.id.container_fragment, cattleFragment);
+                ft.addToBackStack("tag");
                 ft.commit();
             }
         });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                CattleFragment cattleFragment = new CattleFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(CattleInfoFragment.CATTLE_EARRNIG, earring.getText().toString());
+                cattleFragment.setArguments(bundle);
+                FragmentTransaction ft = cattleHome.getFragmentManager().beginTransaction();
+                ft.replace(R.id.container_fragment, cattleFragment);
+                ft.addToBackStack("tag");
+                ft.commit();
+                return false;
+            }
+        });
+
     }
 
     public void setEarring(String earring) {

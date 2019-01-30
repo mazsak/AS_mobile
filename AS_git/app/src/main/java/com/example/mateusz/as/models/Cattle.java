@@ -2,9 +2,7 @@ package com.example.mateusz.as.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Cattle {
 
@@ -28,26 +26,14 @@ public class Cattle {
     private String leaveReason;
     @SerializedName("notes")
     private String notes;
-    @SerializedName("teamList")
-    private List<Integer> teamList = new ArrayList<>();
-    @SerializedName("inseminationList")
-    private List<Integer> inseminationList = new ArrayList<>();
-    @SerializedName("idMother")
-    private long idMother;
-    @SerializedName("calvingList")
-    private List<Integer> calvingList = new ArrayList<>();
-    @SerializedName("statsDailyList")
-    private List<Integer> statsDailyList = new ArrayList<>();
-    @SerializedName("treatmentList")
-    private List<Integer> treatmentList = new ArrayList<>();
-    @SerializedName("statsMonthlyList")
-    private List<Integer> statsMonthlyList = new ArrayList<>();
+    @SerializedName("team")
+    private long team;
 
     public Cattle() {
 
     }
 
-    public Cattle(long idCattle, String name, String earring, String sex, Integer cowshedNumber, Date birthDate, Date joinDate, Date leaveDate, String leaveReason, String notes, List<Integer> teamList, List<Integer> inseminationList, long idMother, List<Integer> calvingList, List<Integer> statsDailyList, List<Integer> treatmentList, List<Integer> statsMonthlyList) {
+    public Cattle(long idCattle, String name, String earring, String sex, Integer cowshedNumber, Date birthDate, Date joinDate, Date leaveDate, String leaveReason, String notes, Integer team) {
         this.idCattle = idCattle;
         this.name = name;
         this.earring = earring;
@@ -58,13 +44,8 @@ public class Cattle {
         this.leaveDate = leaveDate;
         this.leaveReason = leaveReason;
         this.notes = notes;
-        this.teamList = teamList;
-        this.inseminationList = inseminationList;
-        this.idMother = idMother;
-        this.calvingList = calvingList;
-        this.statsDailyList = statsDailyList;
-        this.treatmentList = treatmentList;
-        this.statsMonthlyList = statsMonthlyList;
+        this.team = team;
+
     }
 
     public long getIdCattle() {
@@ -147,59 +128,12 @@ public class Cattle {
         this.notes = notes;
     }
 
-    public List<Integer> getTeamList() {
-        return teamList;
+    public long getTeam() {
+        return team;
     }
 
-    public void setTeamList(List<Integer> teamList) {
-        this.teamList = teamList;
+    public void setTeam(Integer team) {
+        this.team = team;
     }
 
-    public List<Integer> getInseminationList() {
-        return inseminationList;
-    }
-
-    public void setInseminationList(List<Integer> inseminationList) {
-        this.inseminationList = inseminationList;
-    }
-
-    public long getIdMother() {
-        return idMother;
-    }
-
-    public void setIdMother(long idMother) {
-        this.idMother = idMother;
-    }
-
-    public List<Integer> getCalvingList() {
-        return calvingList;
-    }
-
-    public void setCalvingList(List<Integer> calvingList) {
-        this.calvingList = calvingList;
-    }
-
-    public List<Integer> getStatsDailyList() {
-        return statsDailyList;
-    }
-
-    public void setStatsDailyList(List<Integer> statsDailyList) {
-        this.statsDailyList = statsDailyList;
-    }
-
-    public List<Integer> getTreatmentList() {
-        return treatmentList;
-    }
-
-    public void setTreatmentList(List<Integer> treatmentList) {
-        this.treatmentList = treatmentList;
-    }
-
-    public List<Integer> getStatsMonthlyList() {
-        return statsMonthlyList;
-    }
-
-    public void setStatsMonthlyList(List<Integer> statsMonthlyList) {
-        this.statsMonthlyList = statsMonthlyList;
-    }
 }

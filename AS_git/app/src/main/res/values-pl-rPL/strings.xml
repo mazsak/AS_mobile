@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Asystent Stada</string>
+    <string name="group">Grupa:</string>
+    <string name="not_chosen">Nie wybrano</string>
+    <string name="barcode">Barcode</string>
+    <string name="search_scan">Skanuj i szukaj</string>
+    <string name="name">Nazwa</string>
+    <string name="note">Informacja</string>
+    <string name="save">Zapisz</string>
+    <string name="add">Dodaj</string>
+    <string name="cowshed">Obora</string>
+    <string name="show_cowshed">Pokaż obore</string>
+    <string name="team">Grupa</string>
+    <string name="cattle">Zwierzę</string>
+    <string name="type_text">Typ</string>
+    <string name="number_of_group">Liczba grup:</string>
+    <string name="number_of_cattle">Liczba zwierząt</string>
+    <string name="info_add">Wypełnij potrzebne pola</string>
+    <string name="delete_team">Usunieto grupę</string>
+    <string name="delete_cowshed">Usunięto oborę</string>
+    <string name="info_delete">Usuń wszystkie zwierzęta</string>
+    <string name="info_delete_cowshed">Usuń wysztskie grupy</string>
+    <string name="add_cattle">Dodaj zwierzę</string>
+    <string name="earring">Kolczyk</string>
+    <string name="sex">Płeć</string>
+    <string name="cowshed_number">Numer oborowy</string>
+    <string name="birthDate">Data urodzenia</string>
+    <string name="joinDate">Data dodania</string>
+    <string name="leaveDate">Data ubycia</string>
+    <string name="leaveReason">Powód ubycia</string>
+    <string name="scan_barcode">Skanuj barcode</string>
+    <string name="focus_QR">Skup kamere na QR kodzie</string>
+    <string name="show_request">Pokaż wyniki</string>
+    <string name="map">Mapa</string>
+    <string name="show_map">Pokaż obory na mapie</string>
+    <string name="my_location">Moja lokalizacja</string>
+    <string name="address">Wioska, numer domu, kod pocztowy</string>
+    <string name="update">Zaktualizuj</string>
+</resources>

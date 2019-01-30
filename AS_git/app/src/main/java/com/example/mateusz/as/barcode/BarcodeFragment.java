@@ -2,16 +2,11 @@ package com.example.mateusz.as.barcode;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -20,22 +15,15 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.mateusz.as.MainActivity;
 import com.example.mateusz.as.R;
-import com.example.mateusz.as.adapters.AdapterCattle;
 import com.example.mateusz.as.models.Cattle;
-import com.example.mateusz.as.saveModelFragments.CattleFragment;
 import com.example.mateusz.as.show.CattleInfoFragment;
 import com.example.mateusz.as.show.ListSearchFragment;
-import com.example.mateusz.as.viewHolder.TeamViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,7 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.support.v4.app.ActivityCompat.*;
+import static android.support.v4.app.ActivityCompat.checkSelfPermission;
 
 public class BarcodeFragment extends Fragment {
 
@@ -173,6 +161,7 @@ public class BarcodeFragment extends Fragment {
             cattleInfoFragment.setArguments(bundle);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.container_fragment, cattleInfoFragment);
+            ft.addToBackStack("tag");
             ft.commit();
         } else if (idCattle.size() > 1) {
             ListSearchFragment listSearchFragment = new ListSearchFragment();
@@ -181,6 +170,7 @@ public class BarcodeFragment extends Fragment {
             listSearchFragment.setArguments(bundle);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.container_fragment, listSearchFragment);
+            ft.addToBackStack("tag");
             ft.commit();
         }
     }

@@ -3,6 +3,7 @@ package com.example.mateusz.as.saveModelFragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.models.Cattle;
-import com.example.mateusz.as.models.Cowshed;
 import com.example.mateusz.as.models.Team;
+import com.example.mateusz.as.show.CattleInfoFragment;
+import com.example.mateusz.as.show.ListCattleFragment;
 import com.example.mateusz.as.viewHolder.TeamViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,14 +37,26 @@ public class CattleFragment extends Fragment {
     private Spinner sex;
     private Button save;
     private Team chosenTeam;
+    private Cattle editCattle;
     private int idTeam;
+    private String idCattle = null;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        idTeam = getArguments().getInt(TeamViewHolder.GROUP_ID);
-        getTeam();
+
+        if (getArguments().get(TeamViewHolder.GROUP_ID) != null) {
+            idTeam = getArguments().getInt(TeamViewHolder.GROUP_ID);
+        } else {
+            idCattle = getArguments().getString(CattleInfoFragment.CATTLE_EARRNIG);
+        }
+
+        if (idCattle != null) {
+            getCattle();
+        } else {
+            getTeam();
+        }
     }
 
     public void init(View view) {
@@ -64,7 +78,11 @@ public class CattleFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCattle();
+                if (idCattle != null) {
+                    editCattle();
+                } else {
+                    addCattle();
+                }
             }
         });
     }
@@ -75,6 +93,10 @@ public class CattleFragment extends Fragment {
 
         init(view);
 
+        if (idCattle != null) {
+            save.setText(getResources().getString(R.string.update));
+        }
+
         return view;
     }
 
@@ -82,40 +104,40 @@ public class CattleFragment extends Fragment {
     public void addCattle() {
         if (!earring.getText().toString().isEmpty() && !birthDate.getText().toString().isEmpty() && !joinDate.getText().toString().isEmpty() && !sex.isSelected()) {
             final Cattle cattle = new Cattle();
-            if(name.getText().toString().isEmpty()){
+            if (name.getText().toString().isEmpty()) {
                 cattle.setName(null);
-            }else {
+            } else {
                 cattle.setName(name.getText().toString());
             }
             cattle.setEarring(earring.getText().toString());
             cattle.setSex(sex.getSelectedItem().toString());
-            if(cowshedNumber.getText().toString().isEmpty()){
+            if (cowshedNumber.getText().toString().isEmpty()) {
                 cattle.setCowshedNumber(null);
-            }else {
+            } else {
                 cattle.setCowshedNumber(Integer.valueOf(cowshedNumber.getText().toString()));
             }
             try {
                 cattle.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(birthDate.getText().toString()));
                 cattle.setJoinDate(new SimpleDateFormat("dd.MM.yyyy").parse(joinDate.getText().toString()));
-                if(leaveDate.getText().toString().isEmpty()){
+                if (leaveDate.getText().toString().isEmpty()) {
                     cattle.setLeaveDate(null);
-                }else {
+                } else {
                     cattle.setLeaveDate(new SimpleDateFormat("dd.MM.yyyy").parse(leaveDate.getText().toString()));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(leaveReason.getText().toString().isEmpty()){
+            if (leaveReason.getText().toString().isEmpty()) {
                 cattle.setLeaveReason(null);
-            }else {
+            } else {
                 cattle.setLeaveReason(leaveReason.getText().toString());
             }
-            if(note.getText().toString().isEmpty()){
+            if (note.getText().toString().isEmpty()) {
                 cattle.setNotes(null);
-            }else {
+            } else {
                 cattle.setNotes(note.getText().toString());
             }
-            cattle.getTeamList().add(idTeam);
+            cattle.setTeam(idTeam);
 
 
             db.collection("Cattle")
@@ -152,9 +174,103 @@ public class CattleFragment extends Fragment {
                             }
                         }
                     });
+            ListCattleFragment listCattleFragment = new ListCattleFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(TeamViewHolder.GROUP_ID, idTeam);
+            listCattleFragment.setArguments(bundle);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.container_fragment, listCattleFragment);
+            ft.commit();
         } else {
             Toast.makeText(getContext(), getString(R.string.info_add), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void editCattle() {
+        if (!earring.getText().toString().isEmpty() && !birthDate.getText().toString().isEmpty() && !joinDate.getText().toString().isEmpty() && !sex.isSelected()) {
+            if (name.getText().toString().isEmpty()) {
+                editCattle.setName(null);
+            } else {
+                editCattle.setName(name.getText().toString());
+            }
+            editCattle.setEarring(earring.getText().toString());
+            editCattle.setSex(sex.getSelectedItem().toString());
+            if (cowshedNumber.getText().toString().isEmpty()) {
+                editCattle.setCowshedNumber(null);
+            } else {
+                editCattle.setCowshedNumber(Integer.valueOf(cowshedNumber.getText().toString()));
+            }
+            try {
+                editCattle.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(birthDate.getText().toString()));
+                editCattle.setJoinDate(new SimpleDateFormat("dd.MM.yyyy").parse(joinDate.getText().toString()));
+                if (leaveDate.getText().toString().isEmpty()) {
+                    editCattle.setLeaveDate(null);
+                } else {
+                    editCattle.setLeaveDate(new SimpleDateFormat("dd.MM.yyyy").parse(leaveDate.getText().toString()));
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (leaveReason.getText().toString().isEmpty()) {
+                editCattle.setLeaveReason(null);
+            } else {
+                editCattle.setLeaveReason(leaveReason.getText().toString());
+            }
+            if (note.getText().toString().isEmpty()) {
+                editCattle.setNotes(null);
+            } else {
+                editCattle.setNotes(note.getText().toString());
+            }
+
+            db.collection("Cattle")
+                    .document(String.valueOf(editCattle.getIdCattle()))
+                    .set(editCattle);
+
+            ListCattleFragment listCattleFragment = new ListCattleFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(TeamViewHolder.GROUP_ID, idTeam);
+            listCattleFragment.setArguments(bundle);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.container_fragment, listCattleFragment);
+            ft.commit();
+        } else {
+            Toast.makeText(getContext(), getString(R.string.info_add), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void getCattle() {
+        db.collection("Cattle")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<Cattle> cattles = new ArrayList<>();
+                            cattles.addAll(task.getResult().toObjects(Cattle.class));
+
+                            for (Cattle cattle1 : cattles) {
+                                if (cattle1.getEarring().equals(idCattle)) {
+                                    editCattle = cattle1;
+                                    if (editCattle.getName() != null)
+                                        name.setText(editCattle.getName());
+                                    earring.setText(editCattle.getEarring());
+                                    if (editCattle.getCowshedNumber() != null)
+                                        cowshedNumber.setText(String.valueOf(editCattle.getCowshedNumber()));
+                                    birthDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(editCattle.getBirthDate()));
+                                    joinDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(editCattle.getJoinDate()));
+                                    if (editCattle.getLeaveDate() != null)
+                                        leaveDate.setText(new SimpleDateFormat("dd.MM.yyyy").format(editCattle.getLeaveDate()));
+                                    if (editCattle.getLeaveReason() != null)
+                                        leaveReason.setText(editCattle.getLeaveReason());
+                                    if (editCattle.getNotes() != null)
+                                        note.setText(editCattle.getNotes());
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
     }
 
     public void getTeam() {
@@ -166,13 +282,13 @@ public class CattleFragment extends Fragment {
                         if (task.isSuccessful()) {
                             List<Team> teams = new ArrayList<>();
                             teams.addAll(task.getResult().toObjects(Team.class));
-                            for(Team team : teams) {
-                                if(team.getIdGroup() == idTeam) {
+                            for (Team team : teams) {
+                                if (team.getIdGroup() == idTeam) {
                                     chosenTeam = team;
                                 }
                             }
                         } else {
-                            Log.w("QueryTeam.read: ", "Error getting documents.", task.getException());
+                            Log.w("CattleFragment.team: ", "Error getting documents.", task.getException());
                         }
                     }
                 });

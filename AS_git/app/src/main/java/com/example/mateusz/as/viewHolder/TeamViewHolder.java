@@ -7,9 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.mateusz.as.R;
+import com.example.mateusz.as.saveModelFragments.TeamFragment;
 import com.example.mateusz.as.show.ListCattleFragment;
 import com.example.mateusz.as.show.ListFragment;
-import com.example.mateusz.as.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +41,19 @@ public class TeamViewHolder extends RecyclerView.ViewHolder {
                 FragmentTransaction ft = home.getFragmentManager().beginTransaction();
                 ft.replace(R.id.container_fragment, listCattleFragment);
                 ft.commit();
+            }
+        });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TeamFragment listCattleFragment = new TeamFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(GROUP_ID, id);
+                listCattleFragment.setArguments(bundle);
+                FragmentTransaction ft = home.getFragmentManager().beginTransaction();
+                ft.replace(R.id.container_fragment, listCattleFragment);
+                ft.commit();
+                return false;
             }
         });
     }

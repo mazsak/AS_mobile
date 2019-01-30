@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mateusz.as.show.ListFragment;
 import com.example.mateusz.as.R;
 import com.example.mateusz.as.models.Cowshed;
+import com.example.mateusz.as.show.ListFragment;
 import com.example.mateusz.as.viewHolder.CowshedViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +28,10 @@ public class AdapterCowshed extends RecyclerView.Adapter<CowshedViewHolder> {
     public AdapterCowshed(ListFragment home){
         this.home = home;
         loadCowshed();
+    }
+
+    public List<Cowshed> getCowsheds() {
+        return cowsheds;
     }
 
     @NonNull
